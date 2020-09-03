@@ -22,8 +22,7 @@ export class Login extends React.Component{
             <React.Fragment>
                 <CssBaseline />
                 <main className="layout">
-                    <Paper className="paper">
-                        <Avatar className="avatar">
+                <Avatar className="avatar">
                             <LockIcon />
                         </Avatar>
                         <Typography variant="h2">Sign in</Typography>
@@ -49,10 +48,12 @@ export class Login extends React.Component{
                                 color="primary"
                                 className="submit"
                             >
-                                Sign in
+                                Log in
                             </Button>
                         </form>
-                    </Paper>
+                    {/* <Paper className="paper">
+                        
+                    </Paper> */}
                 </main>
             </React.Fragment>
         );
