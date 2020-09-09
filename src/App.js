@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { Login }  from './components/Login.js';
+import { Login } from './components/Login.js';
 
 import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-router-dom';
 import TodoApp from './components/TodoApp.js'
@@ -12,7 +12,11 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { isLoggedIn: false };
+        const loggedInUser = localStorage.getItem("loggedInUser");
+
+        this.state = loggedInUser != null ?
+                    { isLoggedIn: true } :
+                    { isLoggedIn: false };
 
         localStorage.setItem("dcifuentes", "testPassword");
         localStorage.setItem("lrodriguez", "password");
@@ -25,6 +29,7 @@ class App extends Component {
 
         } else {
             this.setState({ isLoggedIn: true });
+            localStorage.setItem("loggedInUser", username);
         }
 
     }
@@ -32,13 +37,13 @@ class App extends Component {
     render() {
 
         const PrivateRoute = ({ children, ...rest }) => {
-    
+
             return (
                 <Route
-                
+
                     {...rest}
-                    render={()=>{return this.state.isLoggedIn ? children : <Redirect to="/"/>}}
-    
+                    render={() => { return this.state.isLoggedIn ? children : <Redirect to="/" /> }}
+
                 />
             );
         }
@@ -60,11 +65,11 @@ class App extends Component {
                     </header>
 
                     <Switch>
-                    <Route exact path="/">
-                      {LoginView}
+                        <Route exact path="/">
+                            {LoginView}
                         </Route>
                         <PrivateRoute path="/todo" >
-                            <TodoAppView/>
+                            <TodoAppView />
                         </PrivateRoute>
                     </Switch>
                 </div>
