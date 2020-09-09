@@ -1,5 +1,5 @@
 import React from 'react';
-import { SwipeableDrawer, List, ListItem, ListItemAvatar, Avatar, ListItemText, Divider } from '@material-ui/core';
+import { SwipeableDrawer, List, ListItem, ListItemAvatar, Avatar, ListItemText, Divider, Button } from '@material-ui/core';
 
 export class NavigationDrawer extends React.Component{
     constructor(props){
@@ -22,9 +22,10 @@ export class NavigationDrawer extends React.Component{
             <List>
                 <ListItem>
                     <ListItemAvatar><Avatar/></ListItemAvatar>
-                    <ListItemText primary="Daniel Cifuentes" secondary="daniel.cifuentes-r@mail.escuelaing.edu.co"/>
+                    <ListItemText primary={localStorage.getItem("loggedInUser")} secondary="daniel.cifuentes-r@mail.escuelaing.edu.co"/>
                 </ListItem>
                 <Divider/>
+                    <Button onClick={this.props.handleLogout}>Logout </Button>
 
             </List>
         </SwipeableDrawer>

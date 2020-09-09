@@ -4,34 +4,46 @@ import './App.css';
 
 import { Login } from './components/Login.js';
 
+import { NavigationDrawer } from './components/NavigationDrawer';
+
 import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-router-dom';
 import TodoApp from './components/TodoApp.js'
 
+const loggedInUser = localStorage.getItem("loggedInUser");
 
 class App extends Component {
 
     constructor(props) {
         super(props);
-        const loggedInUser = localStorage.getItem("loggedInUser");
-
-        this.state = loggedInUser != null ?
-                    { isLoggedIn: true } :
-                    { isLoggedIn: false };
+        
+        this.state = loggedInUser ?//sera esta la causa?
+            { isLoggedIn: true } :
+            { isLoggedIn: false };
 
         localStorage.setItem("dcifuentes", "testPassword");
         localStorage.setItem("lrodriguez", "password");
 
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     handleLogin(username, password) {
-        if (localStorage.getItem(username) == null || localStorage.getItem(username) != password) {
-
-        } else {
+        let response =<Redirect to="/"/>;
+        if (localStorage.getItem(username) != null && localStorage.getItem(username) == password) {
             this.setState({ isLoggedIn: true });
             localStorage.setItem("loggedInUser", username);
+            response = <Redirect to="/todo"/>
         }
+        return (response);
 
+    }
+
+    handleLogout() {
+        localStorage.removeItem("loggedInUser");
+        this.setState({ isLoggedIn: false });
+        return (
+            <Redirect to="/" />
+        )
     }
 
     render() {
@@ -54,26 +66,30 @@ class App extends Component {
         const TodoAppView = () => (
             <TodoApp />
         );
+        
 
 
         return (
-            <Router>
-                <div className="App">
-                    <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">Task Planner</h1>
-                    </header>
+                
+                <Router>
+                    <div className="App">
+                    <NavigationDrawer handleLogout={this.handleLogout}/>
+                        <header className="App-header">
+                            <img src={logo} className="App-logo" alt="logo" />
+                            <h1 className="App-title">Task Planner</h1>
+                        </header>
 
-                    <Switch>
-                        <Route exact path="/">
-                            {LoginView}
-                        </Route>
-                        <PrivateRoute path="/todo" >
-                            <TodoAppView />
-                        </PrivateRoute>
-                    </Switch>
-                </div>
-            </Router>
+                        <Switch>
+                            <Route exact path="/">
+                                {LoginView}
+                            </Route>
+                            <PrivateRoute path="/todo" >
+                                <TodoAppView />
+                            </PrivateRoute>
+                        </Switch>
+                    </div>
+                </Router>
+
 
         );
     }
