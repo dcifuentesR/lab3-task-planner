@@ -9,6 +9,7 @@ import LockIcon from '../../node_modules/@material-ui/icons/LockOutlined';
 import Paper from '../../node_modules/@material-ui/core/Paper';
 import Typography from '../../node_modules/@material-ui/core/Typography';
 import './css/Login.css'
+import { NavigationDrawer } from './NavigationDrawer';
 
 export class Login extends React.Component{
 
@@ -21,6 +22,7 @@ export class Login extends React.Component{
         return (
             <React.Fragment>
                 <CssBaseline />
+                <NavigationDrawer/>
                 <main className="layout">
                 <Typography variant="h2">Sign in</Typography>
                 <Avatar className="avatar">
