@@ -5,7 +5,7 @@ import './App.css';
 import { Login }  from './components/Login.js';
 
 import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-router-dom';
-
+import TodoApp from './components/TodoApp.js'
 
 
 class App extends Component {
@@ -46,6 +46,11 @@ class App extends Component {
             <Login handleLogin={this.handleLogin} />
         );
 
+        const TodoAppView = () => (
+            <TodoApp />
+        );
+
+
         return (
             <Router>
                 <div className="App">
@@ -58,7 +63,9 @@ class App extends Component {
                     <Route exact path="/">
                       {LoginView}
                         </Route>
-                        
+                        <PrivateRoute path="/todo" >
+                            <TodoAppView/>
+                        </PrivateRoute>
                     </Switch>
                 </div>
             </Router>
