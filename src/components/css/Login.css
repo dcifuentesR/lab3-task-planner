@@ -4,7 +4,6 @@
     flex-direction: column;
     margin:auto;
     align-items:center;
-    margin-top: 35%;
 }
 
 .paper {
@@ -16,8 +15,10 @@
 }
 
 .avatar {
-    margin: 10px;
+    margin: 20px;
     background: floralwhite;
+    height: 100px !important;
+    width: 100px !important;
 }
 
 .form {
@@ -32,5 +33,9 @@
 @media(max-width:414px){
     .App-header{
         display: none;
+    }
+
+    .layout{
+        margin-top: 35%;
     }
 }

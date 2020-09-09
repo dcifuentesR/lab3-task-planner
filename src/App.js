@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import { Login } from './components/Login.js';
+import { Login }  from './components/Login.js';
 
 import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-router-dom';
+
+
 
 class App extends Component {
 
@@ -17,8 +19,6 @@ class App extends Component {
 
         this.handleLogin = this.handleLogin.bind(this);
     }
-
-    
 
     handleLogin(username, password) {
         if (localStorage.getItem(username) == null || localStorage.getItem(username) != password) {

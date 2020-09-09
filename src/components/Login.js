@@ -10,22 +10,22 @@ import Paper from '../../node_modules/@material-ui/core/Paper';
 import Typography from '../../node_modules/@material-ui/core/Typography';
 import './css/Login.css'
 
-
 export class Login extends React.Component{
 
     constructor(props){
         super(props);
     }
 
+
     render(){
         return (
             <React.Fragment>
                 <CssBaseline />
                 <main className="layout">
+                <Typography variant="h2">Sign in</Typography>
                 <Avatar className="avatar">
-                            <LockIcon />
                         </Avatar>
-                        <Typography variant="h2">Sign in</Typography>
+                        
                         <form className="form">
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="email">Email Address</InputLabel>
