@@ -28,13 +28,11 @@ class App extends Component {
     }
 
     handleLogin(username, password) {
-        let response =<Redirect to="/"/>;
         if (localStorage.getItem(username) != null && localStorage.getItem(username) == password) {
             this.setState({ isLoggedIn: true });
             localStorage.setItem("loggedInUser", username);
-            response = <Redirect to="/todo"/>
+            return (<Redirect to="/todo"/>)
         }
-        return (response);
 
     }
 

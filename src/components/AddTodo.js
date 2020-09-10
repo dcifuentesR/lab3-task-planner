@@ -19,7 +19,7 @@ export class AddTodo extends React.Component{
     }
 
     handleDateChange(e){
-        this.newItem.dueDate = e.target.valueAsDate;
+        this.newItem.dueDate = e.target.valueAsDate.toDateString();
     }
 
     render(){

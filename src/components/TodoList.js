@@ -1,6 +1,7 @@
 import React from 'react';
 import {Todo} from "./Todo";
 import { AddTodo } from './AddTodo';
+import { List, ListItem, Card } from '@material-ui/core';
 
 
 export class TodoList extends React.Component {
@@ -17,7 +18,13 @@ export class TodoList extends React.Component {
     render(){
         const list = this.state.todoList.map((todo,i)=>
         <Todo key={i}
-            text={todo.text}
+            name={todo.name}
+            description={todo.description}
+            responsible={{
+                name:todo.responsible.name,
+                email:todo.responsible.email
+            }}
+            status={todo.status}
             priority={todo.priority}
             dueDate={todo.dueDate}/>
              
@@ -25,18 +32,11 @@ export class TodoList extends React.Component {
         );
 
         return(
-                <table>
-                <thead>
-                    <th>Name</th>
-                    <th>Priority</th>
-                    <th>Due Date</th>
-                </thead>
-                <tbody>   
-                    {list}
-                    
-                    <AddTodo addTask={this.handleAddTask}/>
-                </tbody>
-            </table>
+
+            <List>
+                {list}
+                <AddTodo addTask={this.handleAddTask}/>
+            </List>
 
         );
     }

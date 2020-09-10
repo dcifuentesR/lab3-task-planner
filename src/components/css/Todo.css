@@ -1,8 +1,12 @@
-table{
-    margin: auto;
+.cardRoot{
+    display: flex;
+    margin:10px;
 }
 
-table, th, td {
-    border: 1px solid black;
+.cardContent{
+    width: 100%;
+}
+
+.cardRow{
     text-align: center;
-  }
+}
