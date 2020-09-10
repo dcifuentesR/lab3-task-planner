@@ -3,15 +3,22 @@ import React from 'react';
 export class AddTodo extends React.Component{
     constructor(props){
         super(props);
-        this.newItem={};
+        this.newItem={
+            responsible:{
+                name:localStorage.getItem("loggedInUser"),
+                email:"daniel.cifuentes-r@mail.escueaing.edu.co"
+            },
+            status:"ready",
+        };
         this.handleTextChange = this.handleTextChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
+
     }
 
         
     handleTextChange(e){
-       this.newItem.text =e.target.value;
+       this.newItem.name =e.target.value;
     }
 
     handlePriorityChange(e){
