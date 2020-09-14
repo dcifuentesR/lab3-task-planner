@@ -1,7 +1,9 @@
 import React from 'react';
-import { Typography, TextField, Select, MenuItem, FormControl, Dialog, Button } from '@material-ui/core';
+import { Typography, TextField, Select, MenuItem, FormControl, Dialog, Button, Card } from '@material-ui/core';
 import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+
+import './css/NewTask.css';
 
 export class NewTask extends React.Component{
     constructor(props){
@@ -45,6 +47,7 @@ export class NewTask extends React.Component{
     render(){
         return(
             <Dialog open={this.props.open}>
+                <Card className="dialogCard">
                 <FormControl>
                     <Typography variant="h3">New Task</Typography>
                     <TextField placeholder="Description" onChange={this.handleDescriptionChange}/>
@@ -70,6 +73,8 @@ export class NewTask extends React.Component{
 
                     )}}>Add task</Button>
                 </FormControl>
+                </Card>
+                
 
             </Dialog>
             
