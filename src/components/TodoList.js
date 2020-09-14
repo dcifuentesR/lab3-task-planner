@@ -1,18 +1,30 @@
 import React from 'react';
 import {Todo} from "./Todo";
-import { AddTodo } from './AddTodo';
-import { List, ListItem, Card } from '@material-ui/core';
+import { NewTask } from './NewTask.js';
+import { List, ListItem, Card, Button } from '@material-ui/core';
 
 
 export class TodoList extends React.Component {
     constructor(props){
         super(props);
-        this.state={todoList:this.props.todoList};
+        this.state={todoList:this.props.todoList,
+                    open:false};
         this.handleAddTask = this.handleAddTask.bind(this);
+        this.handleOpenNewTask = this.handleOpenNewTask.bind(this);
+        this.handleCloseNewTask = this.handleCloseNewTask.bind(this);
     }
 
     handleAddTask(newItem){
         this.setState({todoList:this.state.todoList.concat(newItem)});
+        this.handleCloseNewTask();
+    }
+
+    handleOpenNewTask(e){
+        this.setState({open:true});
+    }
+
+    handleCloseNewTask(e){
+        this.setState({open:false});
     }
 
     render(){
@@ -35,7 +47,8 @@ export class TodoList extends React.Component {
 
             <List>
                 {list}
-                <AddTodo addTask={this.handleAddTask}/>
+                <Button onClick={this.handleOpenNewTask}>Add Task</Button>
+                <NewTask open={this.state.open} addTask={this.handleAddTask}/>
             </List>
 
         );
