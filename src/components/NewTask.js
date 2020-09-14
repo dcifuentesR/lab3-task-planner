@@ -6,8 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 export class NewTask extends React.Component{
     constructor(props){
         super(props);
-        //cambiar a setState
-        this.newItem={
+        this.state={
             description:"New task",
             responsible:{
                 name:localStorage.getItem("loggedInUser"),
@@ -15,7 +14,8 @@ export class NewTask extends React.Component{
             },
             status:"ready",
             dueDate:new Date().toDateString()
-        };
+        }
+        //cambiar a setState
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handleStatusChange = this.handleStatusChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -25,19 +25,22 @@ export class NewTask extends React.Component{
 
         
     handleDescriptionChange(e){
-       this.newItem.description =e.target.value;
+       this.setState({description:e.target.value});
     }
 
     handleStatusChange(e){
-        this.newItem.status = e.target.value;
+        this.setState({status:e.target.value});
     }
 
     handleDateChange(e){
-        this.newItem.dueDate = e.toDateString();
+        this.setState({dueDate:e.toDateString()})
     }
 
     handleResponsibleChange(e){
-        this.newItem.responsible.name=e.target.value;
+        this.setState({responsible:{
+            name:e.target.value
+        }})
+        //this.newItem.responsible.name=e.target.value;
     }
 
     render(){
@@ -53,9 +56,20 @@ export class NewTask extends React.Component{
                         <MenuItem value="done">Done</MenuItem>
                     </Select>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker value={this.newItem.dueDate} onChange={this.handleDateChange}/>
+                    <DatePicker onChange={this.handleDateChange}/>
                     </MuiPickersUtilsProvider>
-                    <Button onClick={()=>{this.props.addTask({...this.newItem})}}>Add task</Button>
+                    <Button onClick={()=>{this.props.addTask(
+                        {
+                            description:this.state.description,
+                            responsible:{
+                                name:this.state.responsible.name,
+                                email:"daniel.cifuentes-r@mail.escueaing.edu.co"
+                            },
+                            status:this.state.status,
+                            dueDate:this.state.dueDate
+                        }
+
+                    )}}>Add task</Button>
                 </FormControl>
 
 
