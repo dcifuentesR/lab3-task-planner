@@ -40,7 +40,6 @@ export class NewTask extends React.Component{
         this.setState({responsible:{
             name:e.target.value
         }})
-        //this.newItem.responsible.name=e.target.value;
     }
 
     render(){
@@ -50,7 +49,7 @@ export class NewTask extends React.Component{
                     <Typography variant="h3">New Task</Typography>
                     <TextField placeholder="Description" onChange={this.handleDescriptionChange}/>
                     <TextField placeholder="Responsible" onChange={this.handleResponsibleChange}/>
-                    <Select onChange={this.handleStatusChange}>
+                    <Select value={this.state.status} onChange={this.handleStatusChange}>
                         <MenuItem value="ready">Ready</MenuItem>
                         <MenuItem value="in progress">In progress</MenuItem>
                         <MenuItem value="done">Done</MenuItem>
@@ -71,7 +70,6 @@ export class NewTask extends React.Component{
 
                     )}}>Add task</Button>
                 </FormControl>
-
 
             </Dialog>
             
