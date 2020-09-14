@@ -8,6 +8,7 @@ import { NavigationDrawer } from './components/NavigationDrawer';
 
 import { BrowserRouter, Link, Route, Redirect, Switch } from 'react-router-dom';
 import TodoApp from './components/TodoApp.js'
+import UserProfile from './components/UserProfile';
 
 const loggedInUser = localStorage.getItem("loggedInUser");
 
@@ -83,6 +84,9 @@ class App extends Component {
                             </Route>
                             <PrivateRoute path="/todo" >
                                 <TodoAppView />
+                            </PrivateRoute>
+                            <PrivateRoute path="/profile">
+                                <UserProfile/>
                             </PrivateRoute>
                         </Switch>
                     </div>
