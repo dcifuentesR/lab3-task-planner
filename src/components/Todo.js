@@ -15,7 +15,7 @@ export class Todo extends React.Component {
             <Card className="cardRoot">
                 <List className="cardContent">
                     <ListItem className="cardRow">
-                        <Typography variant="h5">{this.props.name}</Typography>
+                        <Typography variant="h5">{this.props.description}</Typography>
                         <DoneIcon/>{/*se mapeará despues dependiendo de status*/}
                     </ListItem >
                     <ListItem alignItems="center">

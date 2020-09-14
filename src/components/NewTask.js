@@ -6,6 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 export class NewTask extends React.Component{
     constructor(props){
         super(props);
+        //cambiar a setState
         this.newItem={
             description:"New task",
             responsible:{
@@ -15,20 +16,20 @@ export class NewTask extends React.Component{
             status:"ready",
             dueDate:new Date().toDateString()
         };
-        this.handleTextChange = this.handleTextChange.bind(this);
-        this.handlePriorityChange = this.handlePriorityChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handleStatusChange = this.handleStatusChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleResponsibleChange = this.handleResponsibleChange.bind(this);
 
     }
 
         
-    handleTextChange(e){
-       this.newItem.name =e.target.value;
+    handleDescriptionChange(e){
+       this.newItem.description =e.target.value;
     }
 
-    handlePriorityChange(e){
-        this.newItem.priority = e.target.value;
+    handleStatusChange(e){
+        this.newItem.status = e.target.value;
     }
 
     handleDateChange(e){
@@ -44,15 +45,12 @@ export class NewTask extends React.Component{
             <Dialog open={this.props.open}>
                 <FormControl>
                     <Typography variant="h3">New Task</Typography>
-                    <TextField placeholder="Description" onChange={this.handlePriorityChange}/>
+                    <TextField placeholder="Description" onChange={this.handleDescriptionChange}/>
                     <TextField placeholder="Responsible" onChange={this.handleResponsibleChange}/>
-                    <Select
-
-
-                    >
-                        <MenuItem value="Ready">Ready</MenuItem>
-                        <MenuItem value="In progress">In progress</MenuItem>
-                        <MenuItem value="Done">Done</MenuItem>
+                    <Select onChange={this.handleStatusChange}>
+                        <MenuItem value="ready">Ready</MenuItem>
+                        <MenuItem value="in progress">In progress</MenuItem>
+                        <MenuItem value="done">Done</MenuItem>
                     </Select>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <DatePicker value={this.newItem.dueDate} onChange={this.handleDateChange}/>

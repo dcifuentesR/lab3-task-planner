@@ -30,14 +30,12 @@ export class TodoList extends React.Component {
     render(){
         const list = this.state.todoList.map((todo,i)=>
         <Todo key={i}
-            name={todo.name}
             description={todo.description}
             responsible={{
                 name:todo.responsible.name,
                 email:todo.responsible.email
             }}
             status={todo.status}
-            priority={todo.priority}
             dueDate={todo.dueDate}/>
              
               
