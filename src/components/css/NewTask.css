@@ -1,3 +1,11 @@
 .dialogCard{
     padding: 30px;
 }
+
+#newTaskForm>*{
+    padding:5px;
+}
+
+#addTaskBtn{
+    align-self: flex-end;
+}

@@ -6,7 +6,7 @@ import { Login } from './components/Login.js';
 
 import { NavigationDrawer } from './components/NavigationDrawer';
 
-import { BrowserRouter as Router, Link, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Redirect, Switch } from 'react-router-dom';
 import TodoApp from './components/TodoApp.js'
 
 const loggedInUser = localStorage.getItem("loggedInUser");
@@ -69,7 +69,7 @@ class App extends Component {
 
         return (
                 
-                <Router>
+                <BrowserRouter>
                     <div className="App">
                     <NavigationDrawer handleLogout={this.handleLogout}/>
                         <header className="App-header">
@@ -86,7 +86,7 @@ class App extends Component {
                             </PrivateRoute>
                         </Switch>
                     </div>
-                </Router>
+                </BrowserRouter>
 
 
         );

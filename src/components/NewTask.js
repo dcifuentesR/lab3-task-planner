@@ -1,6 +1,7 @@
 import React from 'react';
-import { Typography, TextField, Select, MenuItem, FormControl, Dialog, Button, Card } from '@material-ui/core';
+import { Typography, TextField, Select, MenuItem, FormControl, Dialog, Fab, Card } from '@material-ui/core';
 import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
+import AddIcon from '@material-ui/icons/Add';
 import DateFnsUtils from '@date-io/date-fns';
 
 import './css/NewTask.css';
@@ -48,7 +49,7 @@ export class NewTask extends React.Component{
         return(
             <Dialog open={this.props.open}>
                 <Card className="dialogCard">
-                <FormControl>
+                <FormControl id="newTaskForm">
                     <Typography variant="h3">New Task</Typography>
                     <TextField placeholder="Description" onChange={this.handleDescriptionChange}/>
                     <TextField placeholder="Responsible" onChange={this.handleResponsibleChange}/>
@@ -60,7 +61,7 @@ export class NewTask extends React.Component{
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <DatePicker onChange={this.handleDateChange}/>
                     </MuiPickersUtilsProvider>
-                    <Button onClick={()=>{this.props.addTask(
+                    <Fab id="addTaskBtn" size="small" color="primary" onClick={()=>{this.props.addTask(
                         {
                             description:this.state.description,
                             responsible:{
@@ -71,7 +72,9 @@ export class NewTask extends React.Component{
                             dueDate:this.state.dueDate
                         }
 
-                    )}}>Add task</Button>
+                    )}}>
+                        <AddIcon/>
+                    </Fab>
                 </FormControl>
                 </Card>
                 
