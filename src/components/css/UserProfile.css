@@ -1,5 +1,15 @@
 .mainForm{
     justify-content: space-evenly;
     height: 100%;
-    margin-top: 35%;
+    margin-top: 35% !important;
+}
+
+.mainForm>*{
+    margin: 10px 0 !important;
+}
+
+.avatar#profilePic {
+    margin: 20px;
+    height: 100px !important;
+    width: 100px !important;
 }
