@@ -45,8 +45,6 @@ export default class UserProfile extends Component{
         localStorage.setItem(this.state.name,this.state.password);
         localStorage.setItem("loggedInUser",this.state.name);
 
-        return(<Redirect to="/todo"/>)
-
     }
 
 

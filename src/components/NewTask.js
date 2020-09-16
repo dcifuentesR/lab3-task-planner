@@ -36,7 +36,7 @@ export class NewTask extends React.Component{
     }
 
     handleDateChange(e){
-        this.setState({dueDate:e.toDateString()})
+        this.setState({dueDate:e.toDateString()});
     }
 
     handleResponsibleChange(e){
