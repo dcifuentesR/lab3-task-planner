@@ -10,17 +10,17 @@ export default class TaskFilters extends Component {
     constructor(props) {
         super(props);
         this.state={
-            responsible:localStorage.getItem("loggedInUser"),
+            responsible:"All",
             status:"All",
-            dueDate:"All"
+            dueDate:new Date().toDateString()
         }
-
-        
 
         this.handleStatusChange = this.handleStatusChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleResponsibleChange = this.handleResponsibleChange.bind(this);
         this.handleClearAll = this.handleClearAll.bind(this);
+
+        this.hasFilters = this.hasFilters.bind(this);
     }
 
     handleStatusChange(e){
@@ -39,10 +39,14 @@ export default class TaskFilters extends Component {
 
     handleClearAll(e){
         this.setState({
-            responsible:localStorage.getItem("loggedInUser"),
+            responsible:"All",
             status:"All",
-            dueDate:"All"
+            dueDate:new Date().toDateString()
         });
+    }
+
+    hasFilters(){
+        return !(this.state.responsible === "All" && this.state.status==="All" && this.state.dueDate===new Date().toDateString());//toca probar con fechas
     }
 
     render() {
@@ -72,7 +76,8 @@ export default class TaskFilters extends Component {
                             return(task.responsible.name === this.state.responsible || 
                                     task.dueDate === this.state.dueDate ||
                                     task.status === this.state.status);
-                        }))}}>Apply</Button>
+                                    }),this.hasFilters()
+                        )}}>Apply</Button>
                         <Button variant="contained" color="primary" onClick={this.handleClearAll}>Clear All</Button>
                     </FormControl>
                 </Card>

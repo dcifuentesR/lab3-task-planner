@@ -22,12 +22,19 @@ export class TodoList extends React.Component {
     }
 
     handleAddTask(newItem){
-        this.setState({todoList:this.state.todoList.concat(newItem)});
+        this.setState({todoList:this.state.todoList.concat(newItem),
+            filteredList:this.state.todoList.concat(newItem)
+        });
+        //y agregar al back
         this.handleCloseNewTask();
     }
 
-    handleApplyFilters(filteredItems){
-        this.setState({todoList:filteredItems});
+    handleApplyFilters(filteredItems,hasFilters){
+        if(hasFilters){
+            this.setState({filteredList:filteredItems});
+        }else{
+            this.setState({filteredList:this.state.todoList});
+        }
         this.handleCloseApplyFilters();
     }
 
@@ -47,7 +54,7 @@ export class TodoList extends React.Component {
         this.setState({openTaskFiltersDialog:false});
     }
     render(){
-        const list = this.state.todoList.map((todo,i)=>
+        const list = this.state.filteredList.map((todo,i)=>
         <Todo key={i}
             description={todo.description}
             responsible={{
