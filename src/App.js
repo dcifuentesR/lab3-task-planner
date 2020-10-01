@@ -7,6 +7,7 @@ import { Login } from './components/Login.js';
 import { NavigationDrawer } from './components/NavigationDrawer';
 
 import { BrowserRouter, Link, Route, Redirect, Switch } from 'react-router-dom';
+import {UsersView} from './components/UsersView.js';
 import TodoApp from './components/TodoApp.js'
 import UserProfile from './components/UserProfile';
 
@@ -81,6 +82,9 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/">
                                 {LoginView}
+                            </Route>
+                            <Route path="/users">
+                                <UsersView/>
                             </Route>
                             <PrivateRoute path="/todo" >
                                 <TodoAppView />
